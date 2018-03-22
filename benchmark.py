@@ -104,7 +104,8 @@ if __name__ == '__main__':
     if args.profile:
         with torch.autograd.profiler.profile() as prof:
             main()
-        f = open('%s-profile.txt' % (device_name), 'w')
+        profile_log = device_name.replace(' ', '_')
+        f = open('%s-profile.txt' % (profile_log), 'w')
         f.write(prof.__str__())
     else:
         main()
