@@ -92,10 +92,10 @@ def main():
     # update not included!
     time_total = time_fwd_avg + time_bwd_avg
     
-    print("%-30s %10s %10.2f %10.2f" % (kernel, ':forward:', time_fwd_avg, batch_size*1000/time_fwd_avg))
+    print("%-30s %10s %10.2f %10.2f" % (kernel, ':forward:', time_fwd_avg, args.batch_size*1000/time_fwd_avg))
     print("%-30s %10s %10.2f" % (kernel, ':backward:', time_bwd_avg))
     print("%-30s %10s %10.2f" % (kernel, ':update:', time_upt_avg))
-    print("%-30s %10s %10.2f %10.2f" % (kernel, ':total:', time_total, batch_size*1000/time_total))
+    print("%-30s %10s %10.2f %10.2f" % (kernel, ':total:', time_total, args.batch_size*1000/time_total))
         
 
 if __name__ == '__main__':
