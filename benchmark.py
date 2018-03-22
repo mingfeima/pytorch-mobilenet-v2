@@ -15,6 +15,8 @@ parser.add_argument('--batch_size', type=int, default=96,
                     help='batch size')
 parser.add_argument('--no-cuda', action='store_true', default=False,
                     help='disable CUDA')
+parser.add_argument('--profile', action='store_true', default=False,
+                    help='enable profiler')
 
 args = parser.parse_args()
 args.cuda = not args.no_cuda and torch.cuda.is_available()
@@ -99,4 +101,10 @@ def main():
         
 
 if __name__ == '__main__':
-    main()
+    if args.profile:
+        with torch.autograd.profiler.profile() as prof:
+            main()
+        f = open('%s-profile.txt' % (device_name), 'w')
+        f.write(prof.__str__())
+    else:
+        main()
